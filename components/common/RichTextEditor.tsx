@@ -24,7 +24,7 @@ interface Props {
     [prop: string]: any;
     label?: string;
     error?: any;
-    onChange: (data) => void;
+    onChange: (data: string) => void;
     value: any;
 }
 
@@ -36,7 +36,7 @@ const RichTextEditor = ({ label, onChange, error, value, className }: Props) => 
  return (
   <p className="text-left">
     {label && <label className="mb-2 block font-medium">{label}</label>}
-    <ReactQuill theme="snow" name="test" className={classes} onChange={onChange} value={value} modules={modules}
+    <ReactQuill theme="snow" className={classes} onChange={onChange} value={value} modules={modules}
                     formats={formats} />
     { error && <span className="block text-red-500 font-medium mt-2">{error}</span>}
   </p>

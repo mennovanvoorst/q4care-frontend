@@ -54,7 +54,7 @@ export async function getStaticPaths() {
   const skills = await SkillApi.list();
 
   return {
-    paths: skills.map(skill => ({ params: { id: skill.id } })),
+    paths: skills.map((skill: any) => ({ params: { id: skill.id } })),
     fallback: false,
   }
 }

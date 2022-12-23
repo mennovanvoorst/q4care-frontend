@@ -11,7 +11,7 @@ interface Props {
 
 const NavBar = () => {
   const { user, isLoading, error } = useUser();
-  const [items, setItems] = useState<any>([]);
+  const [items, setItems] = useState<any[]>([]);
 
   useEffect(() => {
     if(isLoading || !user) return;

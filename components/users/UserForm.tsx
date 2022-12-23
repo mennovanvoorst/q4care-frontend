@@ -26,7 +26,7 @@ const roleOptions = [
 
 const UserForm = ({ defaultUser }: Props) => {
   const { skills: skillsList = [], isLoading: skillsLoading, error: skillsError } = useSkills();
-  const [ skills, setSkills ] = useState(defaultUser ? defaultUser.skills.map(skill => ( { id: skill.id, name: skill.name })) : []);
+  const [ skills, setSkills ] = useState(defaultUser ? defaultUser.skills.map((skill: any) => ( { id: skill.id, name: skill.name })) : []);
   const [ skillsAdded, setSkillsAdded ] = useState<string[]>([]);
   const [ skillsRemoved, setSkillsRemoved ] = useState<string[]>([]);
   const { register, handleSubmit, setError, getValues, setValue, watch, formState: { errors } } = useForm({
@@ -69,7 +69,7 @@ const UserForm = ({ defaultUser }: Props) => {
       const acceptedErrors = ["INVALID_ARGUMENT", "RESOURCE_NOT_FOUND"];
 
       if(acceptedErrors.includes(err.code)) {
-        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setError(error, { type: 'custom', message: err.errors[error].message }))
+        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach((error: any) => setError(error, { type: 'custom', message: err.errors ? err.errors[error].message : ERROR_GENERIC }))
         if(err.code === "RESOURCE_NOT_FOUND" && err.message) setAlert({ type: 'error', message: err.message });
       } else {
         setAlert({ type: 'error', message: ERROR_GENERIC });
@@ -80,11 +80,11 @@ const UserForm = ({ defaultUser }: Props) => {
   }
 
   const handleAddSkill = (skill: any) => {
-    setSkills(prev => [...prev, { id: skill.value, name: skill.label }]);
+    setSkills((prev: any[]) => [...prev, { id: skill.value, name: skill.label }]);
     setSkillsAdded(prev => [...prev, skill.value]);
   }
   const handleRemoveSkill = (skill: any) => {
-    setSkills(prev => prev.filter(oldSkill => oldSkill.id !== skill.id));
+    setSkills((prev: any[]) => prev.filter(oldSkill => oldSkill.id !== skill.id));
     setSkillsRemoved(prev => [...prev, skill.id]);
   }
 
@@ -97,7 +97,7 @@ const UserForm = ({ defaultUser }: Props) => {
         <TextInput label="Email" className="bg-white text-slate-800" placeholder="email" register={register("email", { required: "Email is verplicht" })} error={errors.email?.message} />
         <Select options={roleOptions} label="Rol" className="bg-white text-slate-800" placeholder="Flags" register={register("flags", { required: "Rol is verplicht" })} error={errors.flags?.message} />
         
-        <Datalist label="Vaardigheid toevoegen" onSelect={handleAddSkill} className="bg-white text-slate-800" placeholder="Vaardigheid toevoegen" options={skillsList.map(skill => ({ value: skill.id, label: skill.name }))} />
+        <Datalist label="Vaardigheid toevoegen" onSelect={handleAddSkill} className="bg-white text-slate-800" placeholder="Vaardigheid toevoegen" options={skillsList.map((skill: any) => ({ value: skill.id, label: skill.name }))} />
         <SkillList skills={skills} onDelete={handleRemoveSkill} />
 
         <Button type="submit" className="mt-4" disabled={isLoading} loading={isLoading} rounded>Wijzigingen opslaan</Button>

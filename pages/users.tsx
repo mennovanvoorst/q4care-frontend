@@ -14,7 +14,7 @@ const Users: NextPage = ({ users }: any) => {
   const renderList = () => {
     if(users.length === 0) return <p>Er zijn nog geen vaardigheden toegevoegd.</p>
 
-    return users.map(user => <UserCard id={user.id} name={`${user.firstName} ${user.lastName}`} email={user.email} isTeacher={checkRole(user.flags, USER_ROLES.teacher)} isAdministrator={checkRole(user.flags, USER_ROLES.admin)} />)
+    return users.map((user: any) => <UserCard id={user.id} name={`${user.firstName} ${user.lastName}`} email={user.email} isTeacher={checkRole(user.flags, USER_ROLES.teacher)} isAdministrator={checkRole(user.flags, USER_ROLES.admin)} />)
   }
 
 

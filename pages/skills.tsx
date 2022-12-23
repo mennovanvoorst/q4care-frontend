@@ -17,7 +17,7 @@ const Skills: NextPage = ({ skills }: any) => {
   const renderList = () => {
     if(skills.length === 0) return <p>Er zijn nog geen vaardigheden toegevoegd.</p>
 
-    return skills.map(skill => <SkillCard id={skill.id} name={skill.name} />)
+    return skills.map((skill: any) => <SkillCard id={skill.id} name={skill.name} />)
   }
 
 

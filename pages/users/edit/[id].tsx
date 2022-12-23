@@ -62,7 +62,7 @@ export async function getStaticPaths() {
   const users = await UserAPI.list();
 
   return {
-    paths: users.map(user => ({ params: { id: user.id } })),
+    paths: users.map((user: any) => ({ params: { id: user.id } })),
     fallback: false,
   }
 }

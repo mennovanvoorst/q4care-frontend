@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   const resources = await ResourceAPI.list();
 
   return {
-    paths: resources.map(resource => ({ params: { id: resource.id } })),
+    paths: resources.map((resource: any) => ({ params: { id: resource.id } })),
     fallback: false,
   }
 }

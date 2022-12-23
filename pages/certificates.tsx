@@ -40,7 +40,7 @@ const Certificates: NextPage = () => {
 
     if(userSkills.length === 0) return <p>Je hebt nog geen vaardigheden behaald.</p>
 
-    return userSkills.map(skill => <CertificateCard loading={isLoading === skill.id} title={skill.name} description={`Behaald op: ${format(new Date(skill.achievementDate), "dd-MM-yyy")}`} icon={<IoDocumentOutline />} onClick={() => handleCertificateDownload(skill.id)}  />)
+    return userSkills.map((skill: any) => <CertificateCard loading={isLoading === skill.id} title={skill.name} description={`Behaald op: ${format(new Date(skill.achievementDate), "dd-MM-yyy")}`} icon={<IoDocumentOutline />} onClick={() => handleCertificateDownload(skill.id)}  />)
   }
 
 

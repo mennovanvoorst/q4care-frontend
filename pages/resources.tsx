@@ -18,7 +18,7 @@ const Resources: NextPage = ({ resources }: any) => {
   const renderList = () => {
     if(resources.length === 0) return <p>Er zijn nog geen leermiddelen toegevoegd.</p>
 
-    return resources.map(resource => <ResourceCard key={resource.id} id={resource.id} title={resource.title} description={`Toegevoegd op: ${format(new Date(resource.creationDate), "dd-MM-yyy")}`} />)
+    return resources.map((resource: any) => <ResourceCard key={resource.id} id={resource.id} title={resource.title} description={`Toegevoegd op: ${format(new Date(resource.creationDate), "dd-MM-yyy")}`} />)
   }
 
 

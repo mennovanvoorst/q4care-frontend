@@ -32,7 +32,7 @@ const ResourceAPI = {
       throw error.response.data;
     }
   },
-  create: async (formData) => {
+  create: async (formData: any) => {
     try {
       const response = await axios.post(`${SERVER_BASE_URL}/v1/resources`, formData, {
         withCredentials: true,
@@ -48,7 +48,7 @@ const ResourceAPI = {
       throw error.response.data;
     }
   },
-  updateById: async (id: string, formData) => {
+  updateById: async (id: string, formData: any) => {
     try {
       const response = await axios.patch(`${SERVER_BASE_URL}/v1/resources/${id}`, formData, {
         withCredentials: true,

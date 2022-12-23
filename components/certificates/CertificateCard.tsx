@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description: string;
   loading?: boolean;
+  onClick?: () => Promise<void>;
 }
 const CertificateCard = ({icon, title, description, loading = false, ...props}: Props) => {
   return (

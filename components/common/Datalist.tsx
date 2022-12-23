@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import OutsideClickHandler from 'react-outside-click-handler';
 
@@ -21,10 +21,10 @@ const Datalist = ({options, label, className, error, placeholder = "", onSelect,
 
     if(error) classes = twMerge(`${classes} border-2 border-red-500`);
 
-    const renderOptions = () => options.filter(option => option.label.toLowerCase().includes(value.toLowerCase())).map(option => <li key={option.value} className="py-2 px-4 cursor-pointer hover:bg-slate-600" onClick={(e) => handleSelect(e, option)}>{option.label}</li>)
-    const handleInputChange = (e) => setValue(e.target.value);
+    const renderOptions = () => options.filter(option => option.label.toLowerCase().includes(value.toLowerCase())).map(option => <li key={option.value} className="py-2 px-4 cursor-pointer hover:bg-slate-600" onClick={() => handleSelect(option)}>{option.label}</li>)
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
-    const handleSelect = (e, option: any) => {
+    const handleSelect = (option: any) => {
         onSelect(option);
         setOpen(false);
         setValue("");

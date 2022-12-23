@@ -30,7 +30,7 @@ const LoginForm = () => {
       const acceptedErrors = ["INVALID_ARGUMENT", "RESOURCE_NOT_FOUND"]
 
       if(acceptedErrors.includes(err.code)) {
-        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setError(error, { type: 'custom', message: err.errors[error].message }))
+        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setError(error, { type: 'custom', message: err.errors ? err.errors[error].message : ERROR_GENERIC }))
         if(err.code === "RESOURCE_NOT_FOUND" && err.message) setAlert({ type: 'error', message: err.message });
       } else {
         setAlert({ type: 'error', message: ERROR_GENERIC });

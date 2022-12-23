@@ -46,7 +46,7 @@ const ResourceForm = ({ defaultResource }: Props) => {
       formData.append("title", data.title);
       formData.append("body", data.body);
 
-      Array.from(data.files).map((file) => {
+      Array.from(data.files).map((file: any) => {
         formData.append('files', file);
       });
 
@@ -68,7 +68,7 @@ const ResourceForm = ({ defaultResource }: Props) => {
       const acceptedErrors = ["INVALID_ARGUMENT", "RESOURCE_NOT_FOUND"]
 
       if(acceptedErrors.includes(err.code)) {
-        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setError(error, { type: 'custom', message: err.errors[error].message }))
+        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach((error: any) => setError(error, { type: 'custom', message: err.errors ? err.errors[error].message : ERROR_GENERIC }))
         if(err.code === "RESOURCE_NOT_FOUND" && err.message) setAlert({ type: 'error', message: err.message });
       } else {
         setAlert({ type: 'error', message: ERROR_GENERIC });
@@ -96,7 +96,7 @@ const ResourceForm = ({ defaultResource }: Props) => {
       const acceptedErrors = ["INVALID_ARGUMENT"]
 
       if(acceptedErrors.includes(err.code)) {
-        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setError(error, { type: 'custom', message: err.errors[error].message }))
+        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach((error: any) => setError(error, { type: 'custom', message: err.errors ? err.errors[error].message : ERROR_GENERIC }))
       } else {
         setAlert({ type: 'error', message: ERROR_GENERIC });
       }

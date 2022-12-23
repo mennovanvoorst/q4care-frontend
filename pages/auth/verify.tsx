@@ -27,7 +27,8 @@ const Verify = () => {
 
   const handleTokenSubmit = async () => {
     try {
-      const response = await AuthAPI.verifyToken(router.query.token);
+      const token = router.query.token as string;
+      const response = await AuthAPI.verifyToken(token);
 
       setAlert({ type: 'success', message: "Je bent succesvol ingelogd! Je wordt automatisch redirected naar de homepage." });
       setTimeout(() => router.push('/'), 1000);
@@ -36,7 +37,7 @@ const Verify = () => {
       const acceptedErrors = ["INVALID_ARGUMENT", "RESOURCE_NOT_FOUND"]
 
       if(acceptedErrors.includes(err.code)) {
-        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setAlert({ type: 'error', message: err.errors[error].message }))
+        if(err.code === "INVALID_ARGUMENT" && err.errors) Object.keys(err.errors).forEach(error => setAlert({ type: 'error', message: err.errors ? err.errors[error].message : ERROR_GENERIC }))
         if((err.code === "RESOURCE_NOT_FOUND" || err.code === "INVALID_ARGUMENT") && err.message) setAlert({ type: 'error', message: err.message });
       } else {
         setAlert({ type: 'error', message: ERROR_GENERIC });
