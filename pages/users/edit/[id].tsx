@@ -41,7 +41,7 @@ const EditUser: NextPage<Props> = ({ id, firstName, lastName, email, flags, skil
 )
   }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ params }: Params) {
   const id = params.id;
   const { firstName, lastName, email, flags } = await UserAPI.getById(id);
   const skills = await UserAPI.getSkillsById(id);
@@ -54,17 +54,7 @@ export async function getStaticProps({ params }: Params) {
       email,
       flags,
       skills
-    },
-    revalidate: 10
-  }
-}
-
-export async function getStaticPaths() {
-  const users = await UserAPI.list();
-
-  return {
-    paths: users.map((user: any) => ({ params: { id: user.id } })),
-    fallback: "blocking",
+    }
   }
 }
 

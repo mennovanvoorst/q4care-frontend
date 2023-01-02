@@ -39,14 +39,13 @@ const Resources: NextPage = ({ resources }: any) => {
 )
   }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const resources = await ResourceAPI.list();
   
   return {
     props: {
       resources,
-    },
-    revalidate: 10
+    }
   }
 }
 

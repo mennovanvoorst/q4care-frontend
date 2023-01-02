@@ -38,7 +38,7 @@ const EditSkill: NextPage<Props> = ({ id, name }) => {
 )
   }
 
-  export async function getStaticProps({ params }: Params) {
+  export async function getServerSideProps({ params }: Params) {
   const skillId = params.id;
   const { id, name } = await SkillApi.getById(skillId);
   
@@ -46,17 +46,7 @@ const EditSkill: NextPage<Props> = ({ id, name }) => {
     props: {
       id,
       name,
-    },
-    revalidate: 10
-  }
-}
-
-export async function getStaticPaths() {
-  const skills = await SkillApi.list();
-
-  return {
-    paths: skills.map((skill: any) => ({ params: { id: skill.id } })),
-    fallback: "blocking",
+    }
   }
 }
 

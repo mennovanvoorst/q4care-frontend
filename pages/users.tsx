@@ -35,14 +35,13 @@ const Users: NextPage = ({ users }: any) => {
 )
   }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const users = await UserAPI.list();
   
   return {
     props: {
       users,
-    },
-    revalidate: 10
+    }
   }
 }
 

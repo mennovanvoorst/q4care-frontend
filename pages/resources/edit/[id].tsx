@@ -37,7 +37,7 @@ const EditResource: NextPage<Props> = ({ id, title, body, files }) => {
 )
   }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ params }: Params) {
   const id = params.id;
   const { title, body, files } = await ResourceAPI.getById(id);
   
@@ -47,17 +47,7 @@ export async function getStaticProps({ params }: Params) {
       title,
       body,
       files
-    },
-    revalidate: 10
-  }
-}
-
-export async function getStaticPaths() {
-  const resources = await ResourceAPI.list();
-
-  return {
-    paths: resources.map((resource: any) => ({ params: { id: resource.id } })),
-    fallback: "blocking",
+    }
   }
 }
 
