@@ -48,6 +48,7 @@ export async function getStaticProps({ params }: Params) {
       body,
       files
     },
+    revalidate: 10
   }
 }
 
@@ -56,7 +57,7 @@ export async function getStaticPaths() {
 
   return {
     paths: resources.map((resource: any) => ({ params: { id: resource.id } })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 

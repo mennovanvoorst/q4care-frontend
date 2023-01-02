@@ -47,6 +47,7 @@ const EditSkill: NextPage<Props> = ({ id, name }) => {
       id,
       name,
     },
+    revalidate: 10
   }
 }
 
@@ -55,7 +56,7 @@ export async function getStaticPaths() {
 
   return {
     paths: skills.map((skill: any) => ({ params: { id: skill.id } })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 

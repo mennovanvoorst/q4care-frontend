@@ -55,6 +55,7 @@ export async function getStaticProps({ params }: Params) {
       flags,
       skills
     },
+    revalidate: 10
   }
 }
 
@@ -63,7 +64,7 @@ export async function getStaticPaths() {
 
   return {
     paths: users.map((user: any) => ({ params: { id: user.id } })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
