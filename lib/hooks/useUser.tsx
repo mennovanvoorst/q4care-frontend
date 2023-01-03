@@ -22,4 +22,14 @@ export const useUserSkills = (userId: string) => {
   }
 }
 
+export const useUserPayments = (userId: string) => {
+  const { data, error, isLoading } = useSWR(`${SERVER_BASE_URL}/v1/users/${userId}/payments`, fetcher);
+
+  return {
+    userPayments: data,
+    isLoading,
+    error
+  }
+}
+
 export default useUser;

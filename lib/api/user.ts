@@ -111,6 +111,21 @@ const UserAPI = {
       throw error.response.data;
     }
   },
+  getPaymentsById: async (userId: string) => {
+    try {
+      const headers: any = {
+        'Authorization': `Basic ${process.env.SERVER_AUTH_TOKEN}`
+      };
+
+      const response = await axios.get(`${SERVER_BASE_URL}/v1/users/${userId}/payments`, { headers });
+
+      return response.data;
+    } catch (error: any) {
+      if(!error.response) throw error;
+      
+      throw error.response.data;
+    }
+  },
 };
 
 export default UserAPI;

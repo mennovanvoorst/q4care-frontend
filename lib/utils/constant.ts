@@ -10,4 +10,5 @@ export const USER_ROLES = {
   student: 2,
   teacher: 4,
   admin: 8,
+  paid: 16,
 };

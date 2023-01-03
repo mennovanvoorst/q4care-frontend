@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavLink from "./NavLink";
-import { IoHomeOutline, IoHome, IoDocumentsOutline, IoDocuments, IoBook, IoBookOutline, IoPeople, IoPeopleOutline, IoSchool, IoSchoolOutline } from "react-icons/io5";
+import { IoHomeOutline, IoHome, IoDocumentsOutline, IoDocuments, IoBook, IoBookOutline, IoPeople, IoPeopleOutline, IoSchool, IoSchoolOutline, IoReceipt, IoReceiptOutline } from "react-icons/io5";
 import useUser from "../../lib/hooks/useUser";
 import checkRole from "../../lib/utils/checkRole";
 import { USER_ROLES } from "../../lib/utils/constant";
@@ -29,7 +29,7 @@ const NavBar = () => {
       icon: <IoDocuments />,
       iconActive: <IoDocumentsOutline />,
       destination: "/certificates",
-      visible: true,
+      visible: checkRole(user.flags, USER_ROLES.paid),
     },
     {
       label: "Leermiddelen",
@@ -37,6 +37,13 @@ const NavBar = () => {
       iconActive: <IoBookOutline />,
       destination: "/resources",
       visible: checkRole(user.flags, USER_ROLES.student)
+    },
+    {
+      label: "Transacties",
+      icon: <IoReceipt />,
+      iconActive: <IoReceiptOutline />,
+      destination: "/payments",
+      visible: true,
     },
     {
       label: "Vaardigheden",

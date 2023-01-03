@@ -19,9 +19,10 @@ type Props = {
 
 const roleOptions = [
   { value: USER_ROLES.default.toString(), label: "Default" },
-  { value: USER_ROLES.student.toString(), label: "Student" },
-  { value: (USER_ROLES.student + USER_ROLES.teacher).toString(), label: "Docent" },
-  { value: (USER_ROLES.student + USER_ROLES.teacher + USER_ROLES.admin).toString(), label: "Administrator" },
+  { value: USER_ROLES.paid.toString(), label: "Betaalde gebruiker" },
+  { value: (USER_ROLES.paid + USER_ROLES.student).toString(), label: "Student" },
+  { value: (USER_ROLES.paid + USER_ROLES.student + USER_ROLES.teacher).toString(), label: "Docent" },
+  { value: (USER_ROLES.paid + USER_ROLES.student + USER_ROLES.teacher + USER_ROLES.admin).toString(), label: "Administrator" },
 ]
 
 const UserForm = ({ defaultUser }: Props) => {
