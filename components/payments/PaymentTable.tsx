@@ -14,7 +14,7 @@ const paymentStatus = {
   "expired": "Verlopen",
 }
 
-const PaymentTable = ({description, date, status, currency, value, expirationDate, ...props}: Props) => {
+const PaymentTable = ({description, date, status, currency, value, expirationDate,...props}: Props) => {
   return (
     <tr {...props}>
       <td>{ description }</td>
